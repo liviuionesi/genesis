@@ -1,4 +1,4 @@
-# Genesis — Work Contract
+# Spring Genesis — Work Contract
 
 This file governs work on this repo, whichever agent is driving. A
 human-driven session can ignore this file, but should still respect the

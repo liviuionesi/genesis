@@ -1,4 +1,4 @@
-# Genesis — Spring Service Generator
+# Spring Genesis — Spring Service Generator
 
 [![CI](https://github.com/liviuionesi/genesis/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/liviuionesi/genesis/actions/workflows/ci.yml)
 [![Java 25](https://img.shields.io/badge/Java-25-orange.svg)](https://openjdk.org/projects/jdk/25/)
@@ -8,9 +8,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Status: Early Development](https://img.shields.io/badge/Status-Early%20Development-lightgrey.svg)](https://github.com/liviuionesi/genesis/milestones)
 
-**Genesis** generates a complete Spring Boot 4.1.1 / Java 25 service —
+**Spring Genesis** generates a complete Spring Boot 4.1.1 / Java 25 service —
 entity through REST layer through tests — from a model, straight from VS
-Code. Define the model in a webview form, point Genesis at Java classes
+Code. Define the model in a webview form, point Spring Genesis at Java classes
 you already have, or hand it a YAML file; it writes back a full vertical
 slice matching real production conventions (`ApiResponse<T>` envelopes,
 MapStruct mappers, `@Cacheable(sync = true)` read-through caching,
@@ -52,7 +52,7 @@ platform whose real, running services are the templates' ground truth.
 
 ## 1. Executive Overview
 
-Spring Initializr gets you a new, empty project. Genesis is for the step
+Spring Initializr gets you a new, empty project. Spring Genesis is for the step
 after that: you already have a service (or a monorepo full of them), and
 you need *one more* model turned into a fully-tested REST resource. Every
 template it writes is a direct port of patterns pulled from real, running
@@ -76,20 +76,21 @@ generated project that really compiles.
 | Feature Area | Epic | Status | Details |
 |---|---|---|---|
 | **Model Input** | [Epic 4](https://github.com/liviuionesi/genesis/issues/4) | Planned | Webview form, existing Java class/package parsing, or a `genesis.model.yaml` file — all normalize to one `ModelSpec`. |
-| **Codegen Engine** | [Epic 2](https://github.com/liviuionesi/genesis/issues/2) | In progress | Entity, DTO, repository, MapStruct mapper, service, controller, `GlobalExceptionHandler` — Handlebars templates ported from `spring41-*`. |
+| **Codegen Engine** | [Epic 2](https://github.com/liviuionesi/genesis/issues/2) | In progress | Entity, DTO, repository, MapStruct mapper, service, controller, `GlobalExceptionHandler` — Handlebars templates ported from `spring41-*`. Optional toggles: outbound `@HttpExchange` client ([#22](https://github.com/liviuionesi/genesis/issues/22)), `Specification`-based search/filter ([#23](https://github.com/liviuionesi/genesis/issues/23)). |
 | **Extension Shell** | [Epic 3](https://github.com/liviuionesi/genesis/issues/3) | Planned | `genesis.newService` command, multi-step QuickPick wizard, settings. |
-| **Test Generation** | [Epic 5](https://github.com/liviuionesi/genesis/issues/5) | Planned | Mockito unit tests, `@DataJpaTest`/`@DataMongoTest` + Testcontainers, `@WebMvcTest`, generated in the same pass as the production code. |
+| **Test Generation** | [Epic 5](https://github.com/liviuionesi/genesis/issues/5) | Planned | Mockito unit tests, `@DataJpaTest`/`@DataMongoTest` + Testcontainers, `@WebMvcTest`, generated in the same pass as the production code. Includes shared Testcontainers base class and mapper tests by default ([#24](https://github.com/liviuionesi/genesis/issues/24)). |
 | **AWS Config** | [Epic 6](https://github.com/liviuionesi/genesis/issues/6) | Planned | Secrets-Manager-backed config properties, one toggle for v1. |
 | **Build Verification** | [Epic 7](https://github.com/liviuionesi/genesis/issues/7) | Planned | A golden-project CI job — generated code must actually compile and its own tests must pass. |
 | **Marketplace Publish** | [Epic 8](https://github.com/liviuionesi/genesis/issues/8) | Planned | `@vscode/vsce` + Open VSX Registry publish. |
 | **Docs & Launch** | [Epic 9](https://github.com/liviuionesi/genesis/issues/9) | Planned | README as the real Marketplace listing, `docs/guides/`, community launch. |
 | **AWS Deploy** | [Epic 10](https://github.com/liviuionesi/genesis/issues/10) | Planned | Dockerfile + Terraform + manually-dispatched deploy workflow, $0-budget by default ([ADR-001](docs/architecture/adr/001-zero-budget-aws-deploy.md)). |
+| **Observability & Contract Testing** | [Epic 11](https://github.com/liviuionesi/genesis/issues/25) | Planned | OpenAPI contract test (diff live `/v3/api-docs` against committed snapshot), Actuator/Prometheus smoke test, `springdoc-openapi` wiring. |
 
 ---
 
 ## 3. SDLC: How This Is Being Built
 
-Genesis runs the same Scrum discipline as `lmdb.dev`: a formal Product
+Spring Genesis runs the same Scrum discipline as `lmdb.dev`: a formal Product
 Goal, User Stories with Given/When/Then acceptance criteria, Definition of
 Ready/Done gates, and a numbered ADR for every real architectural
 decision. See [`docs/process/`](docs/process/) for the standing
@@ -148,16 +149,16 @@ Full picture, as it's actually built: [`docs/architecture/ARCHITECTURE.md`](docs
 ## 5. Codebase Layout
 
 `lmdb.dev` is a microservices monorepo, so its top-level split is
-`backend/` (nine services) / `frontend/` / `infrastructure/`. Genesis is
+`backend/` (nine services) / `frontend/` / `infrastructure/`. Spring Genesis is
 one product, not a fleet of services, so that split doesn't transfer
 literally — here's the honest mapping instead:
 
-| lmdb.dev concept | Genesis equivalent |
+| lmdb.dev concept | Spring Genesis equivalent |
 |---|---|
 | `backend/<service>/src/main` | [`src/`](src/) — the extension itself |
 | `backend/<service>/src/test` | [`src/test/`](src/test/) |
-| (no direct equivalent — lmdb.dev *writes* services) | [`templates/`](templates/) — what Genesis generates *other* services from |
-| `infrastructure/terraform`, `infrastructure/kubernetes` | *(planned, Epic 10)* — Terraform templates Genesis generates for the AWS deploy toggle, not infrastructure for Genesis itself |
+| (no direct equivalent — lmdb.dev *writes* services) | [`templates/`](templates/) — what Spring Genesis generates *other* services from |
+| `infrastructure/terraform`, `infrastructure/kubernetes` | *(planned, Epic 10)* — Terraform templates Spring Genesis generates for the AWS deploy toggle, not infrastructure for Spring Genesis itself |
 | `docs/` | [`docs/`](docs/) — same subfolder shape: `architecture/adr/`, `process/`, `guides/`, `reports/`, `security/` |
 | `.github/` | [`.github/`](.github/) — same shape: issue templates, PR template, `dependabot.yml`, `BRANCH_PROTECTION.md`, `workflows/` |
 | `examples/` (no lmdb.dev equivalent) | [`examples/`](examples/) — the checked-in "golden project" CI builds to prove templates compile |
@@ -182,7 +183,7 @@ path defaults to the zero-budget shape in
 [ADR-001](docs/architecture/adr/001-zero-budget-aws-deploy.md): single-node
 k3s on EC2, `ghcr.io`, NodePort, a billing alarm as the first Terraform
 resource, everything ephemeral and manually dispatched — never
-deploy-on-merge. Genesis (the extension) itself needs nothing deployed;
+deploy-on-merge. Spring Genesis (the extension) itself needs nothing deployed;
 this is about what it generates for the services *it* creates.
 
 ## 8. CI/CD
@@ -203,9 +204,9 @@ git config core.hooksPath .githooks
 npm run compile
 ```
 
-Press `F5` in VS Code to launch an Extension Development Host with Genesis
+Press `F5` in VS Code to launch an Extension Development Host with Spring Genesis
 loaded. Today that gets you exactly one command
-(`Genesis: New Spring Service`) that tells you it's still being built —
+(`Spring Genesis: New Spring Service`) that tells you it's still being built —
 see [§1](#1-executive-overview).
 
 ## 10. Contributing

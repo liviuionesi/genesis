@@ -1,6 +1,6 @@
 {
   "name": "genesis",
-  "displayName": "Genesis — Spring Service Generator",
+  "displayName": "Spring Genesis — Spring Service Generator",
   "description": "Generate a complete Spring Boot 4.1.1 / Java 25 service — model through REST layer through tests — from a model definition.",
   "version": "0.0.1",
   "publisher": "liviuionesi",
@@ -34,7 +34,7 @@
     "commands": [
       {
         "command": "genesis.newService",
-        "title": "Genesis: New Spring Service"
+        "title": "Spring Genesis: New Spring Service"
       }
     ]
   },

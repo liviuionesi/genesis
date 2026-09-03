@@ -1,10 +1,10 @@
-# Genesis — Architecture
+# Spring Genesis — Architecture
 
 **Status:** Early scaffolding (Epic 1 just landed). This document tracks
 design as it's actually built, not an aspirational sketch — expect it to
 grow with Epic 2 onward.
 
-## What Genesis is
+## What Spring Genesis is
 
 A VS Code extension that generates a complete Spring Boot 4.1.1 / Java 25
 service — model through REST layer through tests — from a model

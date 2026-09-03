@@ -6,8 +6,8 @@
 
 ## Context
 
-Epic 10 lets Genesis generate a Dockerfile, a Terraform module, and a
-GitHub Actions workflow that deploy the generated service to AWS. Genesis
+Epic 10 lets Spring Genesis generate a Dockerfile, a Terraform module, and a
+GitHub Actions workflow that deploy the generated service to AWS. Spring Genesis
 ships to strangers whose AWS accounts and budgets we know nothing about —
 unlike a single internal project, a bad default here doesn't cost one team
 a surprise bill, it costs every user of the tool one.
@@ -38,7 +38,7 @@ own cloud demo" to "a default every generated project inherits."
 - Easier: a first-time user can `terraform apply` → see it live → `terraform
   destroy` without billing anxiety; the golden-project CI gate (Epic 7) can
   exercise the same path safely.
-- Harder: this is a *default*, not a ceiling — Genesis doesn't stop someone
+- Harder: this is a *default*, not a ceiling — Spring Genesis doesn't stop someone
   from hand-editing the generated Terraform for a real production topology,
   and the generated guide says so.
 - Revisit: if a Story needs a genuinely different AWS target (EKS, RDS,

@@ -1,4 +1,4 @@
-# Contributing to Genesis
+# Contributing to Spring Genesis
 
 Thanks for considering it. This project is young — the process below is
 the same discipline [lmdb.dev](https://github.com/liviuionesi/lmdb.dev)

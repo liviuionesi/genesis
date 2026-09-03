@@ -9,10 +9,10 @@ justify skipping one of these, not repeat all of them every time.
 - **Correctness of generated code**: no template ships without a
   golden-project build proving the code it produces actually compiles and
   its own generated tests pass (see `DEFINITION_OF_DONE.md`).
-- **Cost**: anything Genesis generates that touches a cloud account
+- **Cost**: anything Spring Genesis generates that touches a cloud account
   defaults to the $0-budget framing (ADR-001) unless the issue explicitly
   says otherwise — ephemeral infrastructure, cost-shaped defaults, a
-  billing alarm before anything else. Genesis ships to strangers whose
+  billing alarm before anything else. Spring Genesis ships to strangers whose
   budgets we know nothing about; this one is non-negotiable, not a
   suggestion.
 - **Compatibility**: targets the current VS Code stable API

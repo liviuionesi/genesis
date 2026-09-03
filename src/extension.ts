@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 
 /**
- * Extension entry point. Registers Genesis's commands.
+ * Extension entry point. Registers Spring Genesis's commands.
  *
  * Currently a placeholder: the wizard (model input, codegen engine, output
  * writer) lands with Epics 2-4 (see docs/architecture/ARCHITECTURE.md).
@@ -13,7 +13,7 @@ import * as vscode from 'vscode';
 export function activate(context: vscode.ExtensionContext): void {
   const newService = vscode.commands.registerCommand('genesis.newService', () => {
     void vscode.window.showInformationMessage(
-      'Genesis is still being built — track progress at ' +
+      'Spring Genesis is still being built — track progress at ' +
         'https://github.com/liviuionesi/genesis/issues',
     );
   });

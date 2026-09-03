@@ -11,10 +11,10 @@ open-source project — but real reports get a real, fast response.
 
 Two different concerns, both real:
 
-1. **Genesis's own code** — no secrets/tokens in the repo, dependencies
+1. **Spring Genesis's own code** — no secrets/tokens in the repo, dependencies
    kept `npm audit`-clean (enforced in CI), no reliance on unstable/
    proposed VS Code APIs.
-2. **The code Genesis generates** — never embeds a live AWS credential;
+2. **The code Spring Genesis generates** — never embeds a live AWS credential;
    the Secrets Manager toggle (Epic 6) generates *references*, not values.
    Anything Epic 10 generates for AWS deployment defaults to the
    cost-shaped, ephemeral shape in
