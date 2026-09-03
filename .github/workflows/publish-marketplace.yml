@@ -13,7 +13,7 @@ jobs:
     if: false # flip on once Epic 8 lands and the publisher secrets exist
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: '20'
           cache: 'npm'
