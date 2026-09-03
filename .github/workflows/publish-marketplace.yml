@@ -1,0 +1,23 @@
+name: Publish to Marketplace
+
+# Manually dispatched only — never on every push. Requires a
+# VSCE_PAT (VS Code Marketplace) and/or OVSX_PAT (Open VSX) secret,
+# configured once Epic 8 (Packaging & Marketplace Publish) actually ships
+# a working extension worth publishing. Placeholder until then.
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    if: false # flip on once Epic 8 lands and the publisher secrets exist
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run compile
+      - run: npx vsce publish -p ${{ secrets.VSCE_PAT }}
+      - run: npx ovsx publish -p ${{ secrets.OVSX_PAT }}

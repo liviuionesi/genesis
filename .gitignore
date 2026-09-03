@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build output
+out/
+dist/
+*.vsix
+
+# Extension test runner
+.vscode-test/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor/OS
+.DS_Store
+*.code-workspace
+
+# Generated golden-project build output (examples/ source is checked in, its build isn't)
+examples/**/build/
+examples/**/.gradle/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
