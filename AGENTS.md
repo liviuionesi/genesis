@@ -161,8 +161,8 @@ adaptation to this project's stack, not a drift.
   reference a real issue number.
 - Keep the subject short (~72 characters) and the body short — one line of
   extra context at most.
-- End commit messages with:
-  `Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>`
+- **Do not add a `Co-Authored-By` trailer or any other AI attribution
+  line.** Liviu is the sole author of every commit in this repo.
 - Never commit secrets or credentials, even ones covered by `.gitignore`.
 - If you must stop mid-issue, leave `develop` buildable and fully
   committed — no uncommitted work, no broken build. Prefix the commit
