@@ -10,6 +10,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     if: false # flip on once Epic 8 lands and the publisher secrets exist
     steps:
       - uses: actions/checkout@v4

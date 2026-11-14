@@ -2,13 +2,20 @@ name: CI
 
 on:
   push:
-    branches: [develop, main]
-  pull_request:
-    branches: [develop, main]
+    branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
 
@@ -34,6 +41,7 @@ jobs:
   # Lands with Epic 7; a no-op until examples/ has something to build.
   golden-project-build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     if: false # enable once Epic 7 lands a generated project in examples/
     steps:
       - uses: actions/checkout@v4
