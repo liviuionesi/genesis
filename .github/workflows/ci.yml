@@ -6,6 +6,12 @@ on:
     paths-ignore:
       - 'docs/**'
       - '**.md'
+  # Only Dependabot pull requests run the job below; they get no other check.
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
   workflow_dispatch:
 
 concurrency:
@@ -14,6 +20,7 @@ concurrency:
 
 jobs:
   build-and-test:
+    if: github.event_name != 'pull_request' || github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
